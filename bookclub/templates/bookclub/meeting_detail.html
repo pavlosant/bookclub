@@ -1,0 +1,17 @@
+{% extends 'bookclub/base.html' %}
+
+{% block content %}
+
+<div class="container">
+<br>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Meeting info</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{meeting.meeting_date}}</h6>
+          <p class="card-text">Host will be: {{meeting.host}} at {{meeting.location}}</p>
+          <p class="card-text">Book to be discussed : {{meeting.book.title}} by {{meeting.book.author}}</p>
+         </div>
+      </div>
+
+
+{% endblock content %}

@@ -1,0 +1,34 @@
+{% extends 'bookclub/base.html' %}
+{% block content %}
+<br>
+
+<div class="container">
+    <p> Welcome to the Saffron Walden book club website.</p>
+<p> Please find below information for the next meeting and the book to read. </p>
+  <p>Use the menu above to view past and future meetings, add a book to the book club list, review books and many more!</p>  
+</div>
+<br>
+<div class = "container">
+    <h2>Next meeting:</h2>
+</div>
+
+<div id=meeting-div class = "container">
+    <table class="table">
+    <tr>
+    <th>Date</th>
+    <th>Host</th>
+    <th>Location</th>
+    <th>Details</th>
+    </tr>
+    {% for meeting in meetings_list %}
+    <tr>
+        <th>{{ meeting.meeting_date }}</th>
+        <th>{{ meeting.host }}</th>
+        <th>{{ meeting.location }}</th>
+        <th><a href="{{ meeting.get_absolute_url }}">Show More</a></th>
+    </tr>
+    {% endfor %}
+    </table>
+    
+    </div>
+    {% endblock %}
