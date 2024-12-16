@@ -1,11 +1,38 @@
 {% extends "bookclub/base.html" %}
 
 {% block content %}
+<br>
+<div>
     <h2>Books</h2>
-    <ul>
-        {% for book in books_list %}
-            <li>{{ book.title }} by {{ book.author }}: {{ book.book_discussed}} Chosen by:{{book.chosen_by}}</li>
-           
-        {% endfor %}
-    </ul>
+</div>
+<br>
+<div >
+
+    <div>
+       
+        <a href="{%url 'books-add' %}"  class="btn btn-outline-primary"> Add a book to the bookclub list </a>
+    
+    </div>
+    
+</div>
+<br>
+    
+<div id=books-div class = "container">
+    <div class="row">
+    
+    {% for book in books_list %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{book.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Author:  {{book.author}}</h6>
+          <p class="card-text">Discussed: {{book.book_discussed}}</p>
+          <p class="card-text">Book chosen by: {{book.chosen_by}} </p>
+          <a href="{%url 'bookclub/book-update' book.pk %}"  class="btn btn-outline-primary"> Edit Book </a>
+         </div>
+      </div>
+      {% endfor %}
+   
+</div>
+</div>
+
 {% endblock %}
