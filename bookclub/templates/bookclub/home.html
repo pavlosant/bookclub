@@ -3,32 +3,38 @@
 <br>
 
 <div class="container">
-    <p> Welcome to the Saffron Walden book club website.</p>
+    <p> Welcome to the Saffron Walden book club.</p>
 <p> Please find below information for the next meeting and the book to read. </p>
-  <p>Use the menu above to view past and future meetings, add a book to the book club list, review books and many more!</p>  
+  <p>Use the menu above to view past and future meetings and browse the books in the book club list. </p>  
 </div>
 <br>
+
 <div class = "container">
     <h2>Next meeting:</h2>
 </div>
-
-<div id=meeting-div class = "container">
+{% if next_meeting %}
+<div id="meeting-div" class="container">
     <table class="table">
-    <tr>
-    <th>Date</th>
-    <th>Host</th>
-    <th>Location</th>
-    <th>Details</th>
-    </tr>
-    {% for meeting in meetings_list %}
-    <tr>
-        <th>{{ meeting.meeting_date }}</th>
-        <th>{{ meeting.host }}</th>
-        <th>{{ meeting.location }}</th>
-        <th><a href="{{ meeting.get_absolute_url }}">Show More</a></th>
-    </tr>
-    {% endfor %}
+        <tr>
+            <th>Date</th>
+            <th>Host</th>
+            <th>Location</th>
+            <th>Book</th>
+            <th>Next Chooser</th>
+            <th>More details</th>
+        </tr>
+        <tr>
+            <td>{{ next_meeting.meeting_date }}</td>
+            <td>{{ next_meeting.host }}</td>
+            <td>{{ next_meeting.location }}</td>
+            <td>{{ next_meeting.book.title }} by {{ next_meeting.book.author }}</td>
+            <td>{{ next_meeting.chooser_name }}</td>
+            <td><a href="{{ next_meeting.get_absolute_url }}">Show More</a></td>
+        </tr>
     </table>
-    
-    </div>
+</div>
+{% else %}
+<p>No upcoming meetings found.</p>
+{% endif %}
+
     {% endblock %}

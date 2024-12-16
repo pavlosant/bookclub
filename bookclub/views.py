@@ -3,14 +3,26 @@ from django.http import HttpResponse, Http404
 from django.views import generic
 from .models import Book, BookClub, Meeting
 from django.template import loader
+import datetime
+from django.urls import reverse_lazy
+
 # Create your views here.
 
-class IndexView(generic.ListView):
-    template_name= "bookclub/home.html"
-    context_object_name= "meetings_list"
 
-    def get_queryset(self):
-        return Meeting.objects.all()
+class IndexView(generic.ListView):
+    template_name = "bookclub/home.html"
+    context_object_name = "meetings_list"
+    queryset = []
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_meetings = Meeting.objects.order_by("-meeting_date")
+        future_meetings = [
+            meeting for meeting in all_meetings if meeting.meeting_in_the_future
+        ]
+        context["next_meeting"] = future_meetings[0] if future_meetings else None
+        return context
+
 
 class BooksView(generic.ListView):
     template_name = "bookclub/books.html"
@@ -19,28 +31,64 @@ class BooksView(generic.ListView):
     def get_queryset(self):
         books_list = Book.objects.order_by("-created_at")
         return books_list
-    
+
+
 class MeetingsView(generic.ListView):
     template_name = "bookclub/meetings.html"
     context_object_name = "meetings_list"
 
     def get_queryset(self):
-        meetings_list = Meeting.objects.all()
-        return meetings_list
+        future_meetings = []
+        past_meetings = []
+        all_books = Meeting.objects.order_by("-meeting_date")
+
+        for book in all_books:
+            if book.meeting_in_the_future == True:
+                future_meetings.append(book)
+
+            else:
+                past_meetings.append(book)
+
+        queryset = {
+            "all_meetings": Meeting.objects.order_by("-meeting_date"),
+            "future_meetings": future_meetings,
+            "past_meetings": past_meetings,
+            "next_meeting:": future_meetings[0] if future_meetings else None,
+        }
+        # meetings_list = Meeting.objects.order_by("-meeting_date")
+        return queryset
+
 
 class MeetingDetailView(generic.DetailView):
     model = Meeting
-    template_name="bookclub/meeting_detail.html"
-#def home(request):
+    template_name = "bookclub/meeting_detail.html"
+
+
+class MeetingCreateView(generic.CreateView):
+    model = Meeting
+    fields = "__all__"
+
+
+class MeetingUpdateView(generic.UpdateView):
+    model = Meeting
+    fields = "__all__"
+
+
+class MeetingDeleteView(generic.DeleteView):
+    model = Meeting
+    success_url = reverse_lazy("meetings_list")
+
+
+# def home(request):
 #    template = loader.get_template("bookclub/home.html")
 #    meetings_list = Meeting.objects.all()
 #    context = {
 #        "meetings_list": meetings_list
 #    }
 #    return HttpResponse(template.render(context, request))
-    
 
-#def meeting_detail(request, meeting_id):
+
+# def meeting_detail(request, meeting_id):
 #    meeting = get_object_or_404(Meeting, pk=meeting_id)
 #    return render(request, "bookclub/meeting_detail.html", {"meeting":meeting})
 
@@ -59,4 +107,3 @@ class MeetingDetailView(generic.DetailView):
 #         "meetings_list": meetings_list
 #     }
 #     return HttpResponse(template.render(context, request))
-
