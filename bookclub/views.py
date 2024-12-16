@@ -3,7 +3,8 @@ from django.http import HttpResponse, Http404
 from django.views import generic
 from .models import Book, BookClub, Meeting
 from django.template import loader
-
+import datetime
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -11,9 +12,16 @@ from django.template import loader
 class IndexView(generic.ListView):
     template_name = "bookclub/home.html"
     context_object_name = "meetings_list"
+    queryset = []
 
-    def get_queryset(self):
-        return Meeting.objects.all()
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_meetings = Meeting.objects.order_by("-meeting_date")
+        future_meetings = [
+            meeting for meeting in all_meetings if meeting.meeting_in_the_future
+        ]
+        context["next_meeting"] = future_meetings[0] if future_meetings else None
+        return context
 
 
 class BooksView(generic.ListView):
@@ -33,9 +41,11 @@ class MeetingsView(generic.ListView):
         future_meetings = []
         past_meetings = []
         all_books = Meeting.objects.order_by("-meeting_date")
+
         for book in all_books:
             if book.meeting_in_the_future == True:
                 future_meetings.append(book)
+
             else:
                 past_meetings.append(book)
 
@@ -43,6 +53,7 @@ class MeetingsView(generic.ListView):
             "all_meetings": Meeting.objects.order_by("-meeting_date"),
             "future_meetings": future_meetings,
             "past_meetings": past_meetings,
+            "next_meeting:": future_meetings[0] if future_meetings else None,
         }
         # meetings_list = Meeting.objects.order_by("-meeting_date")
         return queryset
@@ -51,6 +62,21 @@ class MeetingsView(generic.ListView):
 class MeetingDetailView(generic.DetailView):
     model = Meeting
     template_name = "bookclub/meeting_detail.html"
+
+
+class MeetingCreateView(generic.CreateView):
+    model = Meeting
+    fields = "__all__"
+
+
+class MeetingUpdateView(generic.UpdateView):
+    model = Meeting
+    fields = "__all__"
+
+
+class MeetingDeleteView(generic.DeleteView):
+    model = Meeting
+    success_url = reverse_lazy("meetings_list")
 
 
 # def home(request):

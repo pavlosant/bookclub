@@ -26,8 +26,16 @@ class Book(models.Model):
     publication_date = models.DateField(blank=True, null=True)
     ISBN = models.CharField(max_length=100, blank=True, null=True)
     cover = models.CharField(max_length=200, blank=True, null=True)
+
     submitter = models.ForeignKey(
         User, related_name="submitter", on_delete=models.CASCADE, blank=True, null=True
+    )
+    chosen_by = models.ForeignKey(
+        User,
+        related_name="book_chooser",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
     )
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
@@ -52,7 +60,7 @@ class Book(models.Model):
 
 class Meeting(models.Model):
     meeting_date = models.DateTimeField(default=django.utils.timezone.now)
-    location = models.TextField()
+    location = models.CharField(max_length=500)
     host = models.ForeignKey(User, related_name="host", on_delete=models.CASCADE)
     chooser = models.ForeignKey(
         User,
@@ -73,8 +81,8 @@ class Meeting(models.Model):
         meeting_text = f"{self.meeting_date} @ {self.host}"
         return meeting_text
 
-    # def get_absolute_url(self):
-    #    return reverse("bookclub/meeting_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("bookclub/meeting_detail", kwargs={"pk": self.pk})
 
     @property
     def host_name(self):

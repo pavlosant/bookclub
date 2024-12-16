@@ -4,7 +4,8 @@
     <h2>Books</h2>
     <ul>
         {% for book in books_list %}
-            <li>{{ book.title }}</li>
+            <li>{{ book.title }} by {{ book.author }}: {{ book.book_discussed}} Chosen by:{{book.chosen_by}}</li>
+           
         {% endfor %}
     </ul>
 {% endblock %}
