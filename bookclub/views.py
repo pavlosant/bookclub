@@ -33,6 +33,26 @@ class BooksView(generic.ListView):
         return books_list
 
 
+class BookCreateView(generic.CreateView):
+    model = Book
+    fields = "__all__"
+
+
+class BookUpdateView(generic.UpdateView):
+    model = Book
+    fields = "__all__"
+
+
+class BookDeleteView(generic.DeleteView):
+    model = Book
+    success_url = reverse_lazy("books_list")
+
+
+class BookDetailView(generic.DetailView):
+    model = Meeting
+    template_name = "bookclub/book_detail.html"
+
+
 class MeetingsView(generic.ListView):
     template_name = "bookclub/meetings.html"
     context_object_name = "meetings_list"

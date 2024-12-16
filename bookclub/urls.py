@@ -4,6 +4,17 @@ from . import views
 urlpatterns = [
     path("", views.IndexView.as_view(), name="home"),
     path("books/", views.BooksView.as_view(), name="books_list"),
+    path("books/add/", views.BookCreateView.as_view(), name="books-add"),
+    path(
+        "books/<int:pk>/update/",
+        views.BookUpdateView.as_view(),
+        name="bookclub/book-update",
+    ),
+    path(
+        "books/<int:pk>",
+        views.BookDetailView.as_view(),
+        name="bookclub/book_detail",
+    ),
     path("meetings/", views.MeetingsView.as_view(), name="meetings_list"),
     path(
         "meetings/<int:pk>",
