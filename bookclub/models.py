@@ -2,8 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 import django.utils.timezone
 from django.urls import reverse
+from django.utils import timezone
+from django.utils.timezone import datetime
+from django.utils import timezone
 
+now = timezone.now()
 # Create your models here.
+
 
 class BookClub(models.Model):
     name = models.CharField(max_length=100, default="BookClub")
@@ -46,7 +51,7 @@ class Book(models.Model):
 
 
 class Meeting(models.Model):
-    meeting_date = models.DateField(default=django.utils.timezone.now)
+    meeting_date = models.DateTimeField(default=django.utils.timezone.now)
     location = models.TextField()
     host = models.ForeignKey(User, related_name="host", on_delete=models.CASCADE)
     chooser = models.ForeignKey(
@@ -68,7 +73,7 @@ class Meeting(models.Model):
         meeting_text = f"{self.meeting_date} @ {self.host}"
         return meeting_text
 
-    #def get_absolute_url(self):
+    # def get_absolute_url(self):
     #    return reverse("bookclub/meeting_detail", kwargs={"pk": self.pk})
 
     @property
@@ -82,3 +87,7 @@ class Meeting(models.Model):
     @property
     def book_name(self):
         return f"{self.book.title} by {self.book.author}"
+
+    @property
+    def meeting_in_the_future(self):
+        return self.meeting_date >= now
