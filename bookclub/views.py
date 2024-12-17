@@ -5,6 +5,7 @@ from .models import Book, BookClub, Meeting
 from django.template import loader
 import datetime
 from django.urls import reverse_lazy
+from django.contrib.admin.widgets import AdminDateWidget
 
 # Create your views here.
 
@@ -30,7 +31,16 @@ class BooksView(generic.ListView):
 
     def get_queryset(self):
         books_list = Book.objects.order_by("-created_at")
-        return books_list
+        non_discussed_books = Book.objects.filter(discussed=False).order_by(
+            "-created_at"
+        )
+        discussed_books = Book.objects.filter(discussed=True).order_by("-created_at")
+
+        queryset = {
+            "non_discussed_books": non_discussed_books,
+            "discussed_books": discussed_books,
+        }
+        return queryset
 
 
 class BookCreateView(generic.CreateView):
@@ -49,7 +59,7 @@ class BookDeleteView(generic.DeleteView):
 
 
 class BookDetailView(generic.DetailView):
-    model = Meeting
+    model = Book
     template_name = "bookclub/book_detail.html"
 
 
@@ -83,20 +93,40 @@ class MeetingDetailView(generic.DetailView):
     model = Meeting
     template_name = "bookclub/meeting_detail.html"
 
+    def get_form(self, form_class=None):
+        form = super(MeetingDetailView, self).get_form(form_class)
+        form.fields["meeting_date"].widget = AdminDateWidget(attrs={"type": "date"})
+        return form
+
 
 class MeetingCreateView(generic.CreateView):
     model = Meeting
     fields = "__all__"
+
+    def get_form(self, form_class=None):
+        form = super(MeetingCreateView, self).get_form(form_class)
+        form.fields["meeting_date"].widget = AdminDateWidget(attrs={"type": "date"})
+        return form
 
 
 class MeetingUpdateView(generic.UpdateView):
     model = Meeting
     fields = "__all__"
 
+    def get_form(self, form_class=None):
+        form = super(MeetingUpdateView, self).get_form(form_class)
+        form.fields["meeting_date"].widget = AdminDateWidget(attrs={"type": "date"})
+        return form
+
 
 class MeetingDeleteView(generic.DeleteView):
     model = Meeting
     success_url = reverse_lazy("meetings_list")
+
+    def get_form(self, form_class=None):
+        form = super(MeetingDeleteView, self).get_form(form_class)
+        form.fields["meeting_date"].widget = AdminDateWidget(attrs={"type": "date"})
+        return form
 
 
 # def home(request):

@@ -23,7 +23,7 @@
     {% for meeting in meetings_list.future_meetings %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{meeting.meeting_date}}</h5>
+          <h5 class="card-title">{{meeting.meeting_date|date:"l, F j, Y"}}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Host:  {{meeting.host}}</h6>
           <p class="card-text">Location: {{meeting.location}}</p>
           <p class="card-text">Book: {{meeting.book.title}} by {{meeting.book.author}}</p>
@@ -52,7 +52,7 @@
     {% for meeting in meetings_list.past_meetings %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{meeting.meeting_date}}</h5>
+          <h5 class="card-title">{{meeting.meeting_date|date:"l, F j, Y"}}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Host:  {{meeting.host_name}}</h6>
           <p class="card-text">Location: {{meeting.location}}</p>
           <p class="card-text">Book: {{meeting.book.title}} by {{meeting.book.author}}</p>

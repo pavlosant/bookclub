@@ -8,12 +8,12 @@ urlpatterns = [
     path(
         "books/<int:pk>/update/",
         views.BookUpdateView.as_view(),
-        name="bookclub/book-update",
+        name="book-update",
     ),
     path(
         "books/<int:pk>",
         views.BookDetailView.as_view(),
-        name="bookclub/book_detail",
+        name="book_detail",
     ),
     path("meetings/", views.MeetingsView.as_view(), name="meetings_list"),
     path(
