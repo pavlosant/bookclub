@@ -86,16 +86,20 @@ class Meeting(models.Model):
 
     @property
     def host_name(self):
-        return self.host.username
+        if self.host:
+            return self.host.username
 
     @property
     def chooser_name(self):
-        return self.chooser.username
+        if self.chooser:
+            return self.chooser.username
 
     @property
     def book_name(self):
-        return f"{self.book.title} by {self.book.author}"
+        if self.book.title and self.book.author:
+            return f"{self.book.title} by {self.book.author}"
 
     @property
     def meeting_in_the_future(self):
-        return self.meeting_date >= now
+        if self.meeting_date:
+            return self.meeting_date >= now

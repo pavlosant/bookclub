@@ -131,3 +131,6 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+LOGIN_REDIRECT_URL = "/bookclub/"
+LOGOUT_REDIRECT_URL = "/bookclub/"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
