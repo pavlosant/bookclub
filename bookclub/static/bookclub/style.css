@@ -42,6 +42,9 @@ nav a:hover {
     font-weight: normal; /* Reduce font weight on hover to avoid harsh capitals */
 }
 
+nav a.small-link {
+    font-size: 0.4rem; /* Adjust size as needed */
+}
 /* Section containers */
 .container {
     margin: 2rem auto;
@@ -115,3 +118,4 @@ button:hover, .btn:hover {
         padding: 0.5rem;
     }
 }
+

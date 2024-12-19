@@ -129,6 +129,10 @@ class MeetingDeleteView(generic.DeleteView):
         return form
 
 
+class ProfileView(generic.TemplateView):
+    template_name = "account/profile.html"
+
+
 # def home(request):
 #    template = loader.get_template("bookclub/home.html")
 #    meetings_list = Meeting.objects.all()

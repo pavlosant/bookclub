@@ -14,7 +14,7 @@
 </div>
 
 <br>
-
+{% if user.is_authenticated %}
 <div class = "container">
     <h2>Next meeting:</h2>
 </div>
@@ -42,5 +42,9 @@
 {% else %}
 <p>No upcoming meetings found.</p>
 {% endif %}
-
+{% else %}
+<h2>Please Log In</h2>
+<a href="{%url 'login' %}"  class="btn btn-outline-primary"> Log in </a>
+<a href="{% url 'password_reset' %}" class="btn btn-outline-primary">Forgot Password?</a>
+{% endif %}
     {% endblock %}
