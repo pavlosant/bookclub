@@ -5,6 +5,11 @@
 <div class="container">
 <br>
     <div class="card" style="width: 18rem;">
+        {% if book.cover_image %}
+        <img src="{{ book.cover_image.url }}" class="card-img-top" alt="Book Cover">
+    {% else %}
+        <img src="/static/images/default_cover.jpg" class="card-img-top" alt="Default Cover">
+    {% endif %}
         <div class="card-body">
           <h5 class="card-title">Book info</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Title: {{book.title}} </h6>

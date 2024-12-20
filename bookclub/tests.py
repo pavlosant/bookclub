@@ -84,12 +84,12 @@ class BookClubViewsTests(TestCase):
         self.assertTrue(Book.objects.filter(title="New book").exists)
 
     def test_book_update_view(self):
-        response = self.client.post(
+        response = self.client.put(
             reverse("book-update", args=[self.book1.id]),
             {
                 "title": "Updated Book 1 title",
             },
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         self.book1.refresh_from_db()
         self.assertEqual(self.book1.title, "Updated Book 1 title")

@@ -22,6 +22,8 @@
     {% if meetings_list.future_meetings %}
     {% for meeting in meetings_list.future_meetings %}
     <div class="card" style="width: 18rem;">
+    <img src="/static/images/book_meeting1.jpg" class="card-img-top" alt="Meeting">
+   
         <div class="card-body">
           <h5 class="card-title">{{meeting.meeting_date|date:"l, F j, Y"}}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Host:  {{meeting.host}}</h6>
@@ -51,6 +53,8 @@
     {% if meetings_list.past_meetings %}
     {% for meeting in meetings_list.past_meetings %}
     <div class="card" style="width: 18rem;">
+        <img src="/static/images/book_meeting1_sepia.jpg" class="card-img-top" alt="Meeting">
+
         <div class="card-body">
           <h5 class="card-title">{{meeting.meeting_date|date:"l, F j, Y"}}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Host:  {{meeting.host_name}}</h6>
