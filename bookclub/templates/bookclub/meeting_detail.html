@@ -5,10 +5,13 @@
 <div class="container">
 <br>
     <div class="card" style="width: 18rem;">
+      <img src="/static/images/book_meeting1.jpg" class="card-img-top" alt="Meeting">
+
         <div class="card-body">
           <h5 class="card-title">Meeting info</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">{{meeting.meeting_date|date:"l, F j, Y"}}</h6>
-          <p class="card-text">Host will be: {{meeting.host}} at {{meeting.location}}</p>
+          <p class="card-text">Host will be: {{meeting.host}} </p>
+          <p class="card-text">Location: {{meeting.location}}</p>
           <p class="card-text">Book to be discussed:{{meeting.book.title}} by {{meeting.book.author}}</p>
           <a href="{%url 'bookclub/meeting-update' meeting.pk %}"  class="btn btn-outline-primary"> Edit Meeting </a>
 
