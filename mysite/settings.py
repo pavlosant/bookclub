@@ -131,9 +131,9 @@ STATIC_URL = "static/"
 # STATICFILES_DIRS = [
 #    BASE_DIR / "static",  # Add a project-level static folder if needed
 # ]
-
+STATIC_ROOT = "/home/pavlosant/bookclub/staticfiles"
 # For deployment, configure STATIC_ROOT
-STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
