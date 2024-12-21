@@ -84,10 +84,10 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "bookclub_db",
-        "USER": "admin",
-        "PASSWORD": "admin",
-        "HOST": "localhost",  # 'localhost' if on the same machine
+        "NAME": "pavlosant$booklub_db",
+        "USER": "pavlosant",
+        "PASSWORD": "database",
+        "HOST": "pavlosant.mysql.eu.pythonanywhere-services.com",  # 'localhost' if on the same machine
         "PORT": "3306",  # Default MySQL port
     }
 }
