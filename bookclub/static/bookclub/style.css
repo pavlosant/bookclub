@@ -9,7 +9,7 @@ body {
 
 /* Header styling */
 header {
-    background-color: #5a4b3b;
+    background-color: #000;
     color: #fdfdfd;
     padding: 1rem 0;
     text-align: center;
@@ -35,7 +35,7 @@ header {
 
 /* Navbar logo styling */
 .navbar-logo {
-    width: 5px;
+    width: 10px;
     height: auto;
     vertical-align: middle;
 }
