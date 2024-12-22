@@ -34,7 +34,9 @@ class BooksView(generic.ListView):
         non_discussed_books = Book.objects.filter(discussed=False).order_by(
             "-created_at"
         )
-        discussed_books = Book.objects.filter(discussed=True).order_by("-created_at")
+        discussed_books = Book.objects.filter(discussed=True).order_by(
+            "title", "author"
+        )
 
         queryset = {
             "non_discussed_books": non_discussed_books,
