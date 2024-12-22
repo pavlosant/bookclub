@@ -32,7 +32,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ next_meeting.meeting_date }}</td>
+                    <td>{{ next_meeting.meeting_date|date:"l, F j, Y"} }}</td>
                     <td>{{ next_meeting.host }}</td>
                     <td>{{ next_meeting.location }}</td>
                     <td>{{ next_meeting.book.title }} by {{ next_meeting.book.author }}</td>
