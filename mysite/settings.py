@@ -21,13 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-21&ftayh_(g)00pk94*+q%zcid85048!sgn_cs^z_v_wjirf_$"
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret-key")
+DEBUG = (
+    os.getenv("DEBUG", "False") == "True"
+)  # SECURITY WARNING: don't run with debug turned on in production!
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -84,10 +84,10 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "bookclub_db",
-        "USER": "admin",
-        "PASSWORD": "admin",
-        "HOST": "localhost",  # 'localhost' if on the same machine
+        "NAME": "pavlosant$booklub_db",
+        "USER": "pavlosant",
+        "PASSWORD": "database",
+        "HOST": "pavlosant.mysql.eu.pythonanywhere-services.com",  # 'localhost' if on the same machine
         "PORT": "3306",  # Default MySQL port
     }
 }
@@ -131,9 +131,9 @@ STATIC_URL = "static/"
 # STATICFILES_DIRS = [
 #    BASE_DIR / "static",  # Add a project-level static folder if needed
 # ]
-
+STATIC_ROOT = "/home/pavlosant/bookclub/staticfiles"
 # For deployment, configure STATIC_ROOT
-# STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

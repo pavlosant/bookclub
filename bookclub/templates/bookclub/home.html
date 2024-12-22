@@ -5,16 +5,15 @@
 <br>
 
 <div class="container">
-    <h2> Welcome to the Saffron Walden book club <h2>
+    <h2>Welcome to the Saffron Walden Book Club</h2>
     <div style="display: flex; align-items: center; justify-content: center; padding: 1rem;">
-        
-        <img src="{% static 'images/book_club_henry.jpeg' %}" alt="Logo" style="width: 500px; height: auto; vertical-align: middle;">
-</div>
-
+        <img src="{% static 'images/book_club_henry.jpeg' %}" alt="Book Club" style="width: 100%; max-width: 500px; height: auto; vertical-align: middle;">
+    </div>
 </div>
 
 <br>
 {% if user.is_authenticated %}
+
 <div class = "container">
     <p>Please use the menu above to find out more about the Meetings and Books </p>
     <p>of the Saffron Walden Book Club. </p>
@@ -24,31 +23,39 @@
 </div>
 {% if next_meeting %}
 <div id="meeting-div" class="container">
-    <table class="table">
-        <tr>
-            <th>Date</th>
-            <th>Host</th>
-            <th>Location</th>
-            <th>Book</th>
-            <th>Next Chooser</th>
-            <th>More details</th>
-        </tr>
-        <tr>
-            <td>{{ next_meeting.meeting_date }}</td>
-            <td>{{ next_meeting.host }}</td>
-            <td>{{ next_meeting.location }}</td>
-            <td>{{ next_meeting.book.title }} by {{ next_meeting.book.author }}</td>
-            <td>{{ next_meeting.chooser_name }}</td>
-            <td><a href="{{ next_meeting.get_absolute_url }}">Show More</a></td>
-        </tr>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Host</th>
+                    <th>Location</th>
+                    <th>Book</th>
+                    <th>Next Chooser</th>
+                    <th>More Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ next_meeting.meeting_date|date:"l, F j, Y" }}</td>
+                    <td>{{ next_meeting.host }}</td>
+                    <td>{{ next_meeting.location }}</td>
+                    <td>{{ next_meeting.book.title }} by {{ next_meeting.book.author }}</td>
+                    <td>{{ next_meeting.chooser_name }}</td>
+                    <td><a href="{{ next_meeting.get_absolute_url }}">Show More</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 {% else %}
-<p>No upcoming meetings found.</p>
+<p class="text-center">No upcoming meetings found.</p>
 {% endif %}
 {% else %}
-<h2>Please Log In</h2>
-<a href="{%url 'login' %}"  class="btn btn-outline-primary"> Log in </a>
-<a href="{% url 'password_reset' %}" class="btn btn-outline-primary">Forgot Password?</a>
+<div class="container text-center">
+    <h2>Please Log In</h2>
+    <a href="{% url 'login' %}" class="btn btn-outline-primary">Log In</a>
+    <a href="{% url 'password_reset' %}" class="btn btn-outline-primary">Forgot Password?</a>
+</div>
 {% endif %}
-    {% endblock %}
+{% endblock %}

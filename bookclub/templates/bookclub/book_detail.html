@@ -18,7 +18,9 @@
           <p class="card-text">Book submitted by: {{book.submitter}} </p>
           <p class="card-text">Book chosen by: {{book.chosen_by}} </p>
           <a href="{%url 'book-update' book.pk %}"  class="btn btn-outline-primary"> Edit Book </a>
+          <a href="{%url 'books_list' %}"  class="btn btn-outline-primary"> View All Books </a>
 
+        
          </div>
       </div>
 
