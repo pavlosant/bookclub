@@ -53,7 +53,7 @@
     <div class="row">
     {% if books_list.discussed_books %}
     {% for book in books_list.discussed_books %}  
-    <div class="card" style="width: 18rem; background-color: lightsalmon;">
+    <div class="card" style="width: 18rem; background-color: #fffff0;">
         {% if book.cover_image %}
         <img src="{{ book.cover_image.url }}" class="card-img-top" alt="Book Cover">
     {% else %}
