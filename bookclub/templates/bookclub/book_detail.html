@@ -14,6 +14,9 @@
           <h5 class="card-title">Book info</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Title: {{book.title}} </h6>
           <p class="card-text">Author: {{book.author}}</p>
+          <p class="card-text">Book submitted by: {{book.submitter}} </p>
+          <p class="card-text">Book chosen by: {{book.chosen_by}} </p>
+          <p class="card-text">Discussed: {{book.book_discussed}}</p>
           <p class="card-text">Description: {{book.description}}</p>
           <a href="{%url 'book-update' book.pk %}"  class="btn btn-outline-primary"> Edit Book </a>
 
