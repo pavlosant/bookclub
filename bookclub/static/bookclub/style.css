@@ -6,10 +6,14 @@ body {
     background-color: #f5f2e8;
     color: #3c2f2f;
 }
-
+/* Remove underlines from links in the title */
+header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
 /* Header styling */
 header {
-    background-color: #5a4b3b;
+    background-color: #000;
     color: #fdfdfd;
     padding: 1rem 0;
     text-align: center;
@@ -20,31 +24,40 @@ header {
 }
 
 /* Navigation bar */
-nav {
-    background-color: #80664d;
-    padding: 0.5rem 0;
+/* Set navbar background color */
+.navbar {
+    background-color: #000; /* Black */
+}
+
+/* Adjust font size and style for navbar links */
+.navbar-nav .nav-link {
+    font-size: 1.2rem; /* Smaller and more elegant */
+    font-family: 'Georgia', serif;
+    color: #f8f9fa; /* Light color for visibility */
+    text-transform: capitalize;
+}
+
+/* Navbar logo styling */
+.navbar-logo {
+    width: 100px;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Remove margins around the navbar */
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+/* Footer styling for consistency */
+footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
     text-align: center;
+    color: #5a4b3b; /* Match header color */
 }
 
-nav a {
-    color: #fdfdfd;
-    text-decoration: none;
-    padding: 0.75rem 1rem;
-    display: inline-block;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-family: 'Merriweather', serif; /* Elegant, readable serif font */
-}
-
-nav a:hover {
-    background-color: #5a4b3b;
-    color: #e2d3b3; /* Soft beige on hover */
-    border-radius: 5px;
-    font-weight: normal; /* Reduce font weight on hover to avoid harsh capitals */
-}
-
-nav a.small-link {
-    font-size: 0.4rem; /* Adjust size as needed */
-}
 /* Section containers */
 .container {
     margin: 2rem auto;
