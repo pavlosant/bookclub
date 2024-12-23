@@ -24,7 +24,8 @@
     <div class="row">
     {% if books_list.non_discussed_books %}
     {% for book in books_list.non_discussed_books %}  
-    <div class="card" style="width: 18rem; background-color: whitesmoke;">   
+    <div class="col-lg-3 col-md-6 mb-4"> <!-- Four per row on large screens, two per row on medium/small -->
+    <div class="card" style="background-color: whitesmoke;">   
         {% if book.cover_image %}
         <img src="{{ book.cover_image.url }}" class="card-img-top" alt="Book Cover">
     {% else %}
@@ -34,9 +35,10 @@
           <h5 class="card-title">{{book.title}}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Author:  {{book.author}}</h6>
           <p class="card-text">Book chosen by: {{book.chosen_by}} </p>
-          <a href="{%url 'book_detail' book.pk %}"  class="btn btn-outline-primary"> Read Description</a>
+          <a href="{%url 'book_detail' book.pk %}"  class="btn btn-outline-primary"> Description</a>
           <a href="{%url 'book-update' book.pk %}"  class="btn btn-outline-primary"> Edit Book </a>
          </div>
+      </div>
       </div>
       {% endfor %}
       {% endif %}
@@ -52,7 +54,8 @@
     <div class="row">
     {% if books_list.discussed_books %}
     {% for book in books_list.discussed_books %}  
-    <div class="card" style="width: 18rem; background-color: #fffff0;">
+    <div class="col-lg-3 col-md-6 mb-4"> <!-- Four per row on large screens, two per row on medium/small -->
+    <div class="card" style="background-color: #fffff0;">
         {% if book.cover_image %}
         <img src="{{ book.cover_image.url }}" class="card-img-top" alt="Book Cover">
     {% else %}
@@ -62,9 +65,10 @@
           <h5 class="card-title">{{book.title}}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">Author:  {{book.author}}</h6>
           <p class="card-text">Book chosen by: {{book.chosen_by}} </p>
-          <a href="{%url 'book_detail' book.pk %}"  class="btn btn-outline-primary"> Read Description</a>
+          <a href="{%url 'book_detail' book.pk %}"  class="btn btn-outline-primary"> Description</a>
           <a href="{%url 'book-update' book.pk %}"  class="btn btn-outline-primary"> Edit Book </a>
          </div>
+      </div>
       </div>
       {% endfor %}
       {% endif %}
