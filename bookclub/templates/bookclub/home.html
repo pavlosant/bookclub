@@ -40,7 +40,11 @@
                     <td>{{ next_meeting.meeting_date|date:"l, F j, Y" }}</td>
                     <td>{{ next_meeting.host }}</td>
                     <td>{{ next_meeting.location }}</td>
-                    <td>{{ next_meeting.book.title }} by {{ next_meeting.book.author }}</td>
+            {% if next_meeting.book.title %}
+            <td>{{ next_meeting.book.title }} {{ next_meeting.book.author }}</td>
+            {% else %}
+            <td>TBT</td>
+            {% endif %}
                     <td>{{ next_meeting.chooser_name }}</td>
                     <td><a href="{{ next_meeting.get_absolute_url }}">Show More</a></td>
                 </tr>

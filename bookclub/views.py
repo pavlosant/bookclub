@@ -18,8 +18,9 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         all_meetings = Meeting.objects.order_by("-meeting_date")
+        all_meetings_asc = Meeting.objects.order_by("meeting_date")
         future_meetings = [
-            meeting for meeting in all_meetings if meeting.meeting_in_the_future
+            meeting for meeting in all_meetings_asc if meeting.meeting_in_the_future
         ]
         context["next_meeting"] = future_meetings[0] if future_meetings else None
         return context
@@ -72,17 +73,17 @@ class MeetingsView(generic.ListView):
     def get_queryset(self):
         future_meetings = []
         past_meetings = []
-        all_books = Meeting.objects.order_by("-meeting_date")
+        all_books = Meeting.objects.order_by("meeting_date")
 
         for book in all_books:
             if book.meeting_in_the_future == True:
                 future_meetings.append(book)
 
             else:
-                past_meetings.append(book)
+                past_meetings.insert(0, book)
 
         queryset = {
-            "all_meetings": Meeting.objects.order_by("-meeting_date"),
+            "all_meetings": Meeting.objects.order_by("meeting_date"),
             "future_meetings": future_meetings,
             "past_meetings": past_meetings,
             "next_meeting:": future_meetings[0] if future_meetings else None,
