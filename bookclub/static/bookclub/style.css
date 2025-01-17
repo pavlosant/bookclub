@@ -135,3 +135,9 @@ button:hover, .btn:hover {
     color: #faf8f5; /* Light text on hover */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Slightly enhanced shadow */
 }
+
+.d-flex.justify-content-center {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically, optional */
+}
