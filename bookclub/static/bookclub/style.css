@@ -116,3 +116,18 @@ h2 {
     }
 }
 
+button, .btn {
+    border: 2px solid #a0522d; /* Brown outline */
+    color: #a0522d; /* Brown text */
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #a0522d; /* Brown fill on hover */
+    color: #fff; /* White text on hover */
+}
