@@ -62,7 +62,7 @@
           <p class="card-text">Location: {{meeting.location}}</p>
           <p class="card-text">Book: {{meeting.book.title}} </p>
           <p class="card-text">Author:{{meeting.book.author}}</p>
-          <p class="card-text">Book chosen by: {{meeting.chooser_name}} </p>
+          <p class="card-text">Book chosen by: {{meeting.book.chosen_by}} </p>
           <p class="card-text">Next book chooser: {{meeting.chooser_name}}</p>
           <a href="{%url 'bookclub/meeting-update' meeting.pk %}"  class="btn btn-outline-primary"> Edit Meeting </a>
          </div>
